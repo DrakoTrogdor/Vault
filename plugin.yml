@@ -6,7 +6,7 @@ website: ${project.url}
 api-version: 1.13
 
 main: ${mainClass}
-load: startup
+load: STARTUP
 
 commands:
   vault-info:
