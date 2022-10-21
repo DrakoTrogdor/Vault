@@ -16,15 +16,12 @@
 package net.milkbowl.vault;
 
 import java.util.Collection;
-import java.util.concurrent.Callable;
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
-import org.bstats.bukkit.Metrics;
-import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -261,32 +258,4 @@ public class Vault extends JavaPlugin {
             return false;
         }
     }
-
-
-    private void findCustomData(Metrics metrics) {
-        // Create our Economy Graph and Add our Economy plotters
-        RegisteredServiceProvider<Economy> rspEcon = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
-        Economy econ = null;
-        if (rspEcon != null) {
-            econ = rspEcon.getProvider();
-        }
-        final String econName = econ != null ? econ.getName() : "No Economy";
-        metrics.addCustomChart(new SimplePie("economy", new Callable<String>() {
-            @Override
-            public String call() {
-                return econName;
-            }
-        }));
-
-        // Create our Permission Graph and Add our permission Plotters
-
-        // Create our Chat Graph and Add our chat Plotters
-        RegisteredServiceProvider<Chat> rspChat = Bukkit.getServer().getServicesManager().getRegistration(Chat.class);
-        Chat chat = null;
-        if (rspChat != null) {
-            chat = rspChat.getProvider();
-        }
-        final String chatName = chat != null ? chat.getName() : "No Chat";
-    }
-
 }
